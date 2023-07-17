@@ -42,8 +42,15 @@ public class FacultyController {
         facultyService.removeFaculty(id);
     }
 
-    @GetMapping("color/{color}")
-    public Collection<Faculty> getFacultyForColor(@PathVariable String color) {
-        return facultyService.getFacultyForColor(color);
+    @GetMapping("{name}/{color}")
+    public Collection<Faculty> findFacultiesByNameOrColor(@PathVariable String name, @PathVariable String color) {
+        return facultyService.findFacultiesByNameOrColor(name, color);
     }
+
+    @GetMapping("student/{name}")
+    public Faculty findFacultiesByStudent(@PathVariable String name) {
+        return facultyService.findFacultiesByStudent(name);
+    }
+
+
 }

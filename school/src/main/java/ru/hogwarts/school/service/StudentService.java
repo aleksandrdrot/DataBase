@@ -1,5 +1,6 @@
 package ru.hogwarts.school.service;
 
+import org.hibernate.stat.CollectionStatistics;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.StudentRepository;
@@ -37,10 +38,12 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Collection<Student> getStudentForAge(long age){
-        return studentRepository.findAll().stream()
-                .filter(e -> e.getAge() == age)
-                .collect(Collectors.toList());
+    public Collection<Student> findByAgeBetween(int minAge, int maxAge){
+        return studentRepository.findByAgeBetween(minAge, maxAge);
+    }
+
+    public Collection<Student> findStudentsByFaculty(String name){
+        return studentRepository.findStudentsByFacultyIgnoreCase_name(name);
     }
 
 }

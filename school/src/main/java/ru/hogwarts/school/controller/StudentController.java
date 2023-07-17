@@ -41,10 +41,13 @@ public class StudentController {
         studentService.removeStudent(id);
     }
 
-    @GetMapping("age/{age}")
-    public Collection<Student> getStudentForAge(@PathVariable long age){
-        return studentService.getStudentForAge(age);
+    @GetMapping("age/{minAge}/{maxAge}")
+    public Collection<Student> findByAgeBetween(@PathVariable int minAge,@PathVariable int maxAge){
+        return studentService.findByAgeBetween(minAge, maxAge);
     }
-
+    @GetMapping("faculty/{name}")
+    public Collection<Student> findStudentsByFaculty(@PathVariable String name){
+        return studentService.findStudentsByFaculty(name);
+    }
 
 }
