@@ -27,21 +27,6 @@ public class FacultyController {
         return facultyService.findFaculty(id);
     }
 
-    @PostMapping()
-    public Faculty addFaculty(@RequestBody Faculty faculty) {
-        return facultyService.createFaculty(faculty);
-    }
-
-    @PutMapping()
-    public Faculty changeFaculty(Faculty faculty) {
-        return facultyService.changeFaculty(faculty);
-    }
-
-    @DeleteMapping("{id}")
-    public void removeFaculty(@PathVariable long id) {
-        facultyService.removeFaculty(id);
-    }
-
     @GetMapping("{name}/{color}")
     public Collection<Faculty> findFacultiesByNameOrColor(@PathVariable String name, @PathVariable String color) {
         return facultyService.findFacultiesByNameOrColor(name, color);

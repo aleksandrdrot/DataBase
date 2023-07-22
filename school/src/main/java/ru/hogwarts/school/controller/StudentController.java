@@ -2,9 +2,11 @@ package ru.hogwarts.school.controller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.repository.countStudent;
 import ru.hogwarts.school.service.StudentService;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("student")
@@ -26,21 +28,6 @@ public class StudentController {
         return studentService.findStudent(id);
     }
 
-    @PostMapping()
-    public Student addStudent(Student student){
-        return studentService.createStudent(student);
-    }
-
-    @PutMapping()
-    public Student changeStudent(Student student){
-        return studentService.changeStudent(student);
-    }
-
-    @DeleteMapping("{id}")
-    public void removeStudent(@PathVariable long id){
-        studentService.removeStudent(id);
-    }
-
     @GetMapping("age/{minAge}/{maxAge}")
     public Collection<Student> findByAgeBetween(@PathVariable int minAge,@PathVariable int maxAge){
         return studentService.findByAgeBetween(minAge, maxAge);
@@ -48,6 +35,21 @@ public class StudentController {
     @GetMapping("faculty/{name}")
     public Collection<Student> findStudentsByFaculty(@PathVariable String name){
         return studentService.findStudentsByFaculty(name);
+    }
+
+    @GetMapping("count-all-student")
+    public Integer countAllStudent(){
+        return studentService.countAllStudent();
+    }
+
+    @GetMapping("avg-age-student")
+    public Integer avgAgeStudent(){
+        return studentService.avgAgeStudent();
+    }
+
+    @GetMapping("id-sort-student")
+    public List<countStudent> idSortStudent(){
+        return studentService.idSortStudent();
     }
 
 }
